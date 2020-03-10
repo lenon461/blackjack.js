@@ -6,7 +6,7 @@ node_js:
 
 branches:
   only:
-  - master
+  - develop
 
 install:
   - npm install
@@ -17,4 +17,6 @@ cache:
        
 script: 
   - npm run build
-  - ls
+  - git add .
+  - git commit -m "push master"
+  - git push origin master
