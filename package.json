@@ -1,7 +1,7 @@
 {
-  "name": "blackjack.ts",
+  "name": "blackjack.js",
   "version": "1.0.0",
-  "description": "",
+  "description": "blackjack.js is a Javascript blackjack library that is used for playing blackjack",
   "main": "index.js",
   "scripts": {
     "build": "tsc"
