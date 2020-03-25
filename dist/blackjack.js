@@ -23,36 +23,12 @@ class BlackJack {
         console.log(this.carddeck.cards);
     }
     show() {
-        const dealerStatus = () => {
-            const dealerStatus = [];
-            dealerStatus.push(`+------------------------+`);
-            dealerStatus.push(`|        ${this.dealer.name}        |`);
-            dealerStatus.push(`|                        |`);
-            dealerStatus.push(`|         1. **          |`);
-            dealerStatus.push(`|         2. ${this.dealer.cards[1].suit[0]}${this.dealer.cards[1].rank}          |`);
-            dealerStatus.push(`|                        |`);
-            dealerStatus.push(`|       < Dealer >       |`);
-            dealerStatus.push(`+------------------------+`);
-            return dealerStatus.join("\n");
-        };
-        const PlayersStatus = [];
-        const PlayerStatus = (player) => {
-            const PlayerStatus = [];
-            PlayerStatus.push(`+------------------------+`);
-            PlayerStatus.push(`|        ${player.name}        |`);
-            PlayerStatus.push(`|                        |`);
-            player.cards.map((card, index) => {
-                PlayerStatus.push(`|         ${index + 1}. ${player.cards[index].suit[0]}${player.cards[index].rank}          |`);
-            });
-            PlayerStatus.push(`|                        |`);
-            PlayerStatus.push(`|       < player >       |`);
-            PlayerStatus.push(`+------------------------+`);
-            PlayersStatus.push(PlayerStatus.join("\n"));
-            return PlayerStatus.join("\n");
-        };
-        console.log(dealerStatus());
+        if (this.turn !== this.players.length)
+            console.log(this.dealer.hide_show());
+        else
+            console.log(this.dealer.show());
         this.players.map((player) => {
-            console.log(PlayerStatus(player));
+            console.log(player.show());
         });
     }
     start() {

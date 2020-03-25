@@ -71,6 +71,19 @@ class BlackJackUser extends User {
         // if (isAce && this.cards.length === 2 && this.point === 21) this.status = "BlackJack";
         // else if (this.point > 21) this.status = "Bust";
     }
+    show() {
+        const status = [];
+        status.push(`+------------------------+`);
+        status.push(`|        ${this.name}        |`);
+        status.push(`|                        |`);
+        this.cards.map((card, index) => {
+            status.push(`|         ${index + 1}. ${this.cards[index].suit[0]}${this.cards[index].rank}          |`);
+        });
+        status.push(`|                        |`);
+        status.push(`|         < ${this.point} >         |`);
+        status.push(`+------------------------+`);
+        return status.join("\n");
+    }
 }
 exports.BlackJackUser = BlackJackUser;
 class Player extends BlackJackUser {
@@ -94,6 +107,18 @@ exports.Player = Player;
 class Dealer extends BlackJackUser {
     constructor(name) {
         super(name);
+    }
+    hide_show() {
+        const status = [];
+        status.push(`+------------------------+`);
+        status.push(`|        ${this.name}        |`);
+        status.push(`|                        |`);
+        status.push(`|         ${1}. ${this.cards[0].suit[0]}${this.cards[0].rank}          |`);
+        status.push(`|         2. **          |`);
+        status.push(`|                        |`);
+        status.push(`|         < ?? >         |`);
+        status.push(`+------------------------+`);
+        return status.join("\n");
     }
 }
 exports.Dealer = Dealer;

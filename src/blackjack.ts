@@ -8,12 +8,14 @@ export default class BlackJack {
     dealer: Dealer = new Dealer("Dealer-X");
     carddeck: CardDeck = new CardDeck();
     options: BlackJackOptions;
+    status: "Burst" | "BlackJack" | "Stand" | "Hitable" | "Ready" | "Start";
 
     turn = 0;
 
     constructor(options?: { "no-bet"?: boolean; players?: number }) {
         this.options = { "no-bet": options!["no-bet"] || true, players: options!.players || 1 };
         this.playerAdd(this.options.players);
+        this.status = "Ready";
     }
 
     private playerAdd(playersNum: number) {
@@ -26,12 +28,18 @@ export default class BlackJack {
         console.log(this.carddeck.cards);
     }
 
+    log() {
+        return { dealer: this.dealer, players: this.players };
+    }
+
     show() {
-        if (this.turn !== this.players.length) console.log(this.dealer.hide_show());
-        else console.log(this.dealer.show());
+        const result = [];
+        if (this.turn !== this.players.length) result.push(this.dealer.hide_show());
+        else result.push(this.dealer.show());
         this.players.map((player) => {
-            console.log(player.show());
+            result.push(player.show());
         });
+        return result.join("\n");
     }
 
     start() {
@@ -41,6 +49,7 @@ export default class BlackJack {
             });
             this.dealer.receive(this.carddeck.draw());
         }
+        this.status = "Start";
     }
     action(action: string) {
         const player = this.players[this.turn];
@@ -57,11 +66,28 @@ export default class BlackJack {
         } else {
             throw new Error("Wrong Player Action");
         }
+
+        if (player.point < 21) {
+            this.status = "Hitable";
+        } else if (player.point === 21) {
+            this.status = "BlackJack";
+        } else {
+            this.status = "Burst";
+        }
     }
-    end() {
+    dealer_turn() {
         while (this.dealer.point <= 16) {
             this.dealer.receive(this.carddeck.draw());
         }
+    }
+
+    end() {
+        const result = [];
+        result.push(this.dealer.show());
+        this.players.map((player) => {
+            result.push(player.show());
+        });
+        return result.join("\n");
     }
 }
 

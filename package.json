@@ -14,5 +14,12 @@
     "eslint": "^6.8.0",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@slack/rtm-api": "^5.0.3",
+    "botbuilder-adapter-slack": "^1.0.8",
+    "botkit": "^4.6.2",
+    "slack-node": "^0.1.8",
+    "slackbots": "^1.2.0"
   }
 }
