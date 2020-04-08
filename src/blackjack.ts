@@ -1,18 +1,17 @@
 import User from "./user";
 import { Player, Dealer } from "./user";
 import CardDeck from "./carddeck";
-import { Card } from "./carddeck";
-
-export default class BlackJack {
+import CardGame from "./cardgame";
+export default class BlackJack extends CardGame {
     players: Player[] = [];
     dealer: Dealer = new Dealer("Dealer-X");
-    carddeck: CardDeck = new CardDeck();
     options: BlackJackOptions;
     status: "Burst" | "BlackJack" | "Stand" | "Hitable" | "Ready" | "Start";
 
     turn = 0;
 
     constructor(options?: { "no-bet"?: boolean; players?: number }) {
+        super();
         this.options = { "no-bet": options!["no-bet"] || true, players: options!.players || 1 };
         this.playerAdd(this.options.players);
         this.status = "Ready";

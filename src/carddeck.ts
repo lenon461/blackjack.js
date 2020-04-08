@@ -22,7 +22,7 @@ export default class CardDeck {
         return default_deck;
     }
     shuffle(): void {
-        this.cards.sort((a, b) => Math.random() - Math.random());
+        this.cards.sort(() => Math.random() - Math.random());
     }
     draw(): Card {
         const card = this.cards.pop();

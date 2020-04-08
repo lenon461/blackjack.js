@@ -21,7 +21,7 @@ class CardDeck {
         return default_deck;
     }
     shuffle() {
-        this.cards.sort((a, b) => Math.random() - Math.random());
+        this.cards.sort(() => Math.random() - Math.random());
     }
     draw() {
         const card = this.cards.pop();

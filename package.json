@@ -4,22 +4,37 @@
   "description": "blackjack.js is a Javascript blackjack library that is used for playing blackjack",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^25.2.1",
     "@typescript-eslint/eslint-plugin": "^2.22.0",
     "@typescript-eslint/parser": "^2.22.0",
     "eslint": "^6.8.0",
+    "jest": "^25.2.7",
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.3.1",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "@ava/typescript": "^1.1.1",
     "@slack/rtm-api": "^5.0.3",
+    "ava": "^3.6.0",
     "botbuilder-adapter-slack": "^1.0.8",
     "botkit": "^4.6.2",
     "slack-node": "^0.1.8",
     "slackbots": "^1.2.0"
-  }
+  },
+  "ava": {
+		"extensions": [
+			"ts"
+		],
+		"require": [
+			"ts-node/register"
+		]
+	}
 }
